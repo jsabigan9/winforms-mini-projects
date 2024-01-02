@@ -56,6 +56,7 @@ namespace todolist {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->taskInput = (gcnew System::Windows::Forms::TextBox());
 			this->addTaskBtn = (gcnew System::Windows::Forms::Button());
@@ -130,6 +131,7 @@ namespace todolist {
 			this->Controls->Add(this->taskInput);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"MainForm";
