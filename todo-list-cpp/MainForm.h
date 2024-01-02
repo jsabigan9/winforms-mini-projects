@@ -150,7 +150,7 @@ namespace todolist {
 		}
 		else
 		{
-			task = "- " + Char::ToUpper(task[0]) + task->Substring(1);
+			task = "• " + Char::ToUpper(task[0]) + task->Substring(1);
 			taskListBox->Items->Add(task);
 		}
 		taskInput->Text = "";
