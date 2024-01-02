@@ -39,7 +39,8 @@ namespace todolist {
 
 
 	private: System::Windows::Forms::ListBox^ taskListBox;
-	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ deleteLabel;
+
 
 
 
@@ -61,7 +62,7 @@ namespace todolist {
 			this->taskInput = (gcnew System::Windows::Forms::TextBox());
 			this->addTaskBtn = (gcnew System::Windows::Forms::Button());
 			this->taskListBox = (gcnew System::Windows::Forms::ListBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->deleteLabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -104,20 +105,21 @@ namespace todolist {
 			this->taskListBox->ItemHeight = 24;
 			this->taskListBox->Location = System::Drawing::Point(37, 112);
 			this->taskListBox->Name = L"taskListBox";
-			this->taskListBox->Size = System::Drawing::Size(298, 220);
+			this->taskListBox->Size = System::Drawing::Size(298, 244);
 			this->taskListBox->TabIndex = 3;
 			this->taskListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &MainForm::DeleteTask);
 			// 
-			// label2
+			// deleteLabel
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Fira Code Light", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->deleteLabel->AutoSize = true;
+			this->deleteLabel->Font = (gcnew System::Drawing::Font(L"Fira Code Light", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(33, 346);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(202, 21);
-			this->label2->TabIndex = 4;
-			this->label2->Text = L"Click a task to delete.!";
+			this->deleteLabel->Location = System::Drawing::Point(33, 364);
+			this->deleteLabel->Name = L"deleteLabel";
+			this->deleteLabel->Size = System::Drawing::Size(202, 21);
+			this->deleteLabel->TabIndex = 4;
+			this->deleteLabel->Text = L"Click a task to delete.!";
+			this->deleteLabel->Visible = false;
 			// 
 			// MainForm
 			// 
@@ -125,7 +127,7 @@ namespace todolist {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlLight;
 			this->ClientSize = System::Drawing::Size(371, 403);
-			this->Controls->Add(this->label2);
+			this->Controls->Add(this->deleteLabel);
 			this->Controls->Add(this->taskListBox);
 			this->Controls->Add(this->addTaskBtn);
 			this->Controls->Add(this->taskInput);
@@ -150,10 +152,12 @@ namespace todolist {
 		if (task == "")
 		{
 		}
+
 		else
 		{
 			task = "• " + Char::ToUpper(task[0]) + task->Substring(1);
 			taskListBox->Items->Add(task);
+			deleteLabel->Visible = true;
 		}
 		taskInput->Text = "";
 	}
